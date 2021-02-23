@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import ListaChamados from './componentes/listaChamados';
+import Chat from './componentes/chat.js'
+
+
 
 function App() {
+
+  const [listaChamados, setListaChamados] = useState([
+    {id: 123456, motivo: 'testando um chamado', nome:'willian vinicius', data: '12:00', classificacao: 'testando'},
+    {id: 1236, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'},
+    {id: 12344564456, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'}
+  ]);
+  const [chatActive, setChatActive] = useState();
+  const [user, setUser] = useState();
+
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+    <div>
+     {
+       chatActive !== undefined
+       ? <div>
+          <Chat/>
+        </div>
+     
+
+       :<div className="inicio">
+          <div className="inicio-intro">
+            {listaChamados.map((item,key)=>(
+
+              <ListaChamados
+                key={key}
+                data={item}
+                onClick={(e)=>(setChatActive(item.id))}
+                
+              />
+
+            ))}
+          </div>
+        </div>
+      }
     </div>
   );
 }

@@ -1,0 +1,32 @@
+
+.container{
+  width:80%;
+  border-radius: 1px;
+  background-color:	#f1f1f1;
+  max-height: 200px;
+  margin-top :10px;
+  margin-bottom :10px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #999;
+  font-weight: 500;
+  
+}
+.line{
+  display: flex;
+  align-items: flex-start;
+  height: 40px;
+  line-height: 0px;
+  margin-left: 10px;
+  
+}
+.line p{
+  margin-left: 15px;
+}
+.line-button{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  float: right;
+  height: 30px;
+  line-height: 0px;
+}
