@@ -57,7 +57,7 @@ export default ({data,onClick})=>{
           onClick={onClick}
           className={classes.root}
           endIcon={<RecordVoiceOverIcon/>}>
-            
+          
           Atender
         </Button>
       </div>

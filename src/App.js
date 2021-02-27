@@ -8,9 +8,8 @@ import Chat from './componentes/chat.js'
 function App() {
 
   const [listaChamados, setListaChamados] = useState([
-    {id: 123456, motivo: 'testando um chamado', nome:'willian vinicius', data: '12:00', classificacao: 'testando'},
-    {id: 1236, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'},
-    {id: 12344564456, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'}
+    {id: 123456, motivo: 'Cancelamento', nome:'willian vinicius', data: '12:00', classificacao: 'testando'},
+    {id: 12, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'}
   ]);
   const [chatActive, setChatActive] = useState();
   const [user, setUser] = useState();
@@ -23,10 +22,9 @@ function App() {
      {
        chatActive !== undefined
        ? <div>
-          <Chat/>
-        </div>
+          <Chat info={user}/>
+         </div>
      
-
        :<div className="inicio">
           <div className="inicio-intro">
             {listaChamados.map((item,key)=>(
@@ -34,8 +32,7 @@ function App() {
               <ListaChamados
                 key={key}
                 data={item}
-                onClick={(e)=>(setChatActive(item.id))}
-                
+                onClick={(e)=>(setChatActive(item.id),setUser(item))}
               />
 
             ))}
