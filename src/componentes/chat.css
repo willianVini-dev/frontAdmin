@@ -38,7 +38,7 @@ body{
   height:85%;
   border-bottom: 1px solid #CCC;
   overflow-y: auto;
-  overflow-x: none;
+  overflow-x: hidden;
   background-color: #f1f1f1;
 }
 ::-webkit-scrollbar {
@@ -102,6 +102,7 @@ body{
 .chat-info{
   display: flex;
   flex-direction: column;
+  min-width: 300px;
 }
 .info-atendimento{
   border-bottom: 2px solid #98c453;

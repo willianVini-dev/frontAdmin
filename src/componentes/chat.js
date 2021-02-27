@@ -1,5 +1,6 @@
 import React, {useState,useEffect,useRef} from 'react';
 import './chat.css';
+import useApi from './api.js';
 import MsgItem from './msgItem';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
@@ -9,8 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
 import MicIcon from '@material-ui/icons/Mic';
 import { makeStyles } from '@material-ui/core/styles';
-import msgItem from './msgItem';
-import { TableBody } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 
 export default ({info})=>{
-
+  const api = useApi();
   
 
   // realizar a chamada da api para listar as mensagens do banco
@@ -44,6 +44,9 @@ export default ({info})=>{
  // função para realizar a inserção de mensagem // realizar o envio via Api
   const addMsg = (id,msgInput)=>{ 
     setMensagem([...mensagem,{id:id, mensagem:msgInput}])
+
+    api.setMsg(id,msgInput);
+
     //limpando o input de mensagem
     setText('');
     console.log(mensagem);

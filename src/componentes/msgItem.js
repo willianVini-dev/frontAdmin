@@ -5,7 +5,7 @@ export default ({data,user})=>{
 
   return(
     <div className="mensagemArea">
-      {data.mensagem}
+      <p>{data.mensagem}</p>
     </div>
   );
 }
