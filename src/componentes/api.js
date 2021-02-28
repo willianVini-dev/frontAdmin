@@ -1,4 +1,7 @@
- // função para realizar o post pata qualquer rota
+
+const BASE_URL = 'https://clinipamweb.clinipam.com.br/reseat/'
+
+// função para realizar o post para qualquer rota
  const apiPost = async (endpoint,body)=>{
   const res = await fetch(endpoint,{
     method: 'POST',
@@ -15,15 +18,14 @@
  const api = {
 
   // func para realizar a inserção da mensagem no banco de dados 
-  setMsg:async (id,mensagem)=>{
-    //const json = apiPost('endpoint',{id,mensagem});
-    //return json;
-    console.log(id);
-    console.log(mensagem);
+  setMsg:async (id,idUsuario,mensagem)=>{
+    const json = apiPost(BASE_URL+'chatIserirMsg',{id,idUsuario,mensagem});
+    return json;
   },
 
-  teste: async()=>{
-    console.log('testando a api');
+  listaChamados: async(endpoint)=>{
+    const json = apiPost(BASE_URL+endpoint);
+    return json;
   }
  };
 

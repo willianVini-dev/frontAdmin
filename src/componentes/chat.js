@@ -42,20 +42,24 @@ export default ({info})=>{
 
   
  // função para realizar a inserção de mensagem // realizar o envio via Api
-  const addMsg = (id,msgInput)=>{ 
+  const addMsg = (id,idUsuario,msgInput)=>{ 
+    
+    console.log(info);
+    // setando na mão para realizar teste
     setMensagem([...mensagem,{id:id, mensagem:msgInput}])
 
-    api.setMsg(id,msgInput);
+    // setando mensagem no banco de dados 
+    //api.setMsg(id,idUsuario,msgInput);
 
     //limpando o input de mensagem
     setText('');
-    console.log(mensagem);
+    //console.log(mensagem);
   }
 
 
 
-  const chatMsg = useRef();
   // sempre quando tem mensagem nova, a barra de rolagem vai para a final do chat
+  const chatMsg = useRef();
   useEffect(()=>{
     if(chatMsg.current.scrollHeight > chatMsg.current.offsetHeight){
       chatMsg.current.scrollTop = chatMsg.current.scrollHeight - chatMsg.current.offsetHeight;
@@ -118,7 +122,7 @@ export default ({info})=>{
               onKeyUp={(e)=>{
                   if(e.keyCode == 13){
                     // adicionando mensagem viabotão ENTER
-                    addMsg(info.id,text)
+                    addMsg(info.id,info.idUsuario,text)
                   }
                 }
               }/>
@@ -131,7 +135,7 @@ export default ({info})=>{
               </div>
 
               : <div className="chat-footer-btn">
-                  <SendIcon onClick={()=>(addMsg(info.id,text))}/>
+                  <SendIcon onClick={()=>(addMsg(info.id,info.idUsuario,text))}/>
                 </div>
             }
 
