@@ -50,10 +50,12 @@ export default ({info})=>{
     console.log(info);
     // setando na mão para realizar teste
     if(msgInput != '')
-      setMensagem([...mensagem,{id:id, mensagem:msgInput}])
+      api.setMsg(id,idUsuario,msgInput);
+
+
+     // setMensagem([...mensagem,{id:id, mensagem:msgInput}])
 
     // setando mensagem no banco de dados 
-    //api.setMsg(id,idUsuario,msgInput);
 
     //limpando o input de mensagem
     setText('');
@@ -116,7 +118,7 @@ export default ({info})=>{
         <div className="chat-footer">
           <div className="chat-footer-center">
             <input
-              maxlength="1000"
+              
               type="text" 
               className="chat-footer-input"
               placeholder={ mic ? 'Escutando...': "Digite uma mensagem..."}

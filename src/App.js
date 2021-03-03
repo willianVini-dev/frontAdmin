@@ -3,6 +3,7 @@ import './App.css';
 import ListaChamados from './componentes/listaChamados';
 import Chat from './componentes/chat.js'
 import useApi from './componentes/api';
+import imgLogin from './img/loading.gif'
 
 
 
@@ -10,10 +11,7 @@ function App() {
   const api = useApi();
 
   // chamados fake, para realizar teste
-  const [listaChamados, setListaChamados] = useState([
-    {id: 123456, idUsuario: 1234567, motivo: 'Cancelamento', nome:'willian vinicius', data: '12:00', classificacao: 'testando'},
-    {id: 12, idUsuario: 123, motivo: 'testando um chamado', nome:'willian vinicius',data: '12:00', classificacao: 'testando'}
-  ]);
+  const [listaChamados, setListaChamados] = useState([]);
 
 
 
@@ -22,9 +20,10 @@ function App() {
   setInterval(()=>{
     const listaChamado = async()=>{
       const json = await api.listaChamados('chat/listaChamado')
-      console.log(json);
+      setListaChamados(json);
+      console.log(json)
     }
-    //listaChamado();
+    listaChamado();
   }, 5000);
 
 
@@ -46,6 +45,14 @@ function App() {
      
        :<div className="inicio">
           <div className="inicio-intro">
+            {listaChamados == '' && 
+              <div>
+                <center>
+                  <p>Carregando chamados...</p> 
+                  <img style={{width:'60px', height:'60px'}}src={imgLogin}/>
+                </center>
+              </div>
+            }
             {listaChamados.map((item,key)=>(
 
               <ListaChamados

@@ -7,7 +7,10 @@ const BASE_URL = 'https://clinipamweb.clinipam.com.br/reseat/'
     method: 'POST',
     headers:{
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':'https://clinipamweb.clinipam.com.br',
+      'Access-Control-Allow-Methods':'POST, GET',
+      'Access-Control-Allow-Headers':'*'
     },
     body: JSON.stringify(body)
   });
@@ -19,7 +22,7 @@ const BASE_URL = 'https://clinipamweb.clinipam.com.br/reseat/'
 
   // func para realizar a inserção da mensagem no banco de dados 
   setMsg:async (id,idUsuario,mensagem)=>{
-    const json = apiPost(BASE_URL+'chatIserirMsg',{id,idUsuario,mensagem});
+    const json = apiPost(BASE_URL+'chat/inserirMsg',{id,idUsuario,mensagem});
     return json;
   },
   // func para listar os chamados
