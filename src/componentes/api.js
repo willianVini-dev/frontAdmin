@@ -22,8 +22,13 @@ const BASE_URL = 'https://clinipamweb.clinipam.com.br/reseat/'
     const json = apiPost(BASE_URL+'chatIserirMsg',{id,idUsuario,mensagem});
     return json;
   },
-
+  // func para listar os chamados
   listaChamados: async(endpoint)=>{
+    const json = apiPost(BASE_URL+endpoint);
+    return json;
+  },
+  // func para listar as mensagens
+  listaMensagens: async(endpoint)=>{
     const json = apiPost(BASE_URL+endpoint);
     return json;
   }

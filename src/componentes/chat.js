@@ -33,20 +33,24 @@ export default ({info})=>{
   const [mensagem, setMensagem]= useState([
     {id:'123456', mensagem:' testando uma nova mensagem aquddddi'},
     {id:'12', mensagem:' testando uma nova mensagem aqui'},
-    {id:'12', mensagem:' testando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aquitestando uma nova mensagem aqui'},
-    {id:'12', mensagem:' testando uma nova mensagem aqui'},
-    {id:'12', mensagem:' testando uma nova mensagem aqui'},
-    {id:'12', mensagem:' testando uma nova mensagem aqui'},
-    {id:'123456', mensagem:' testando uma nova mensagem aquddddi'}
   ]);
 
+  setInterval(()=>{
+    const listaMensagens = async()=>{
+      const json = await api.listaMensagens('chat/listaChamado')
+      setMensagem(...mensagem,json);
+    }
+  }, 1000);
+
+  
   
  // função para realizar a inserção de mensagem // realizar o envio via Api
   const addMsg = (id,idUsuario,msgInput)=>{ 
     
     console.log(info);
     // setando na mão para realizar teste
-    setMensagem([...mensagem,{id:id, mensagem:msgInput}])
+    if(msgInput != '')
+      setMensagem([...mensagem,{id:id, mensagem:msgInput}])
 
     // setando mensagem no banco de dados 
     //api.setMsg(id,idUsuario,msgInput);
@@ -100,7 +104,7 @@ export default ({info})=>{
         
         <div ref={chatMsg}className="chat-msg">
             {mensagem.map((item,key)=>(
-              <div className="chat-msg-item" style={{justifyContent: item.id == info.id ? 'flex-start': 'flex-end'}}>
+              <div className="chat-msg-item" style={{justifyContent: item.id == info.id ? 'flex-end': 'flex-start'}}>
                   <MsgItem
                     key={key}
                     data={item}
@@ -109,11 +113,10 @@ export default ({info})=>{
               </div>
             ))}
         </div>
-
-
         <div className="chat-footer">
           <div className="chat-footer-center">
-            <input 
+            <input
+              maxlength="1000"
               type="text" 
               className="chat-footer-input"
               placeholder={ mic ? 'Escutando...': "Digite uma mensagem..."}
